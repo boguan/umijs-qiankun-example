@@ -85,7 +85,7 @@ https://github.com/umijs/umi/blob/v3.3.3/packages/renderer-react/src/renderRoute
 },
 ```
 
-1 125行 添加 microAppBase
+1 renderRoutes.tsx 125行 添加 microAppBase
 ```Javascript
 const routeProps = {
   microAppBase: route.microAppBase || '', // 添加一行
@@ -94,7 +94,7 @@ const routeProps = {
 ```
 https://github.com/umijs/umi/blob/v3.3.3/packages/renderer-react/src/renderRoutes/renderRoutes.tsx#L125
 
-2 第18 改为
+2 Switch.tsx 第18 改为
 ```Javascript
 const path = child.props.microAppBase || child.props.path || child.props.from;
 ```
