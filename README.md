@@ -6,37 +6,37 @@
 父应用路由如下设置，导致子路由打不开
 
 ```Javascript
+{
+  name: 'App1',
+  path: '/app1',
+  icon: 'smile',
+  routes: [
     {
-      name: 'App1',
-      path: '/app1',
-      icon: 'smile',
-      routes: [
-        {
-          path: '/app1/index',
-          name: 'index',
-          microApp: 'App1',
-          wrappers: [
-            '@/wrappers/microApp',
-          ],
-        },
-        {
-          path: '/app1/user',
-          name: 'User',
-          microApp: 'App1',
-          wrappers: [
-            '@/wrappers/microApp',
-          ],
-        },
-        {
-          path: '/app1/list',
-          name: 'List',
-          microApp: 'App1',
-          wrappers: [
-            '@/wrappers/microApp',
-          ],
-        },
+      path: '/app1/index',
+      name: 'index',
+      microApp: 'App1',
+      wrappers: [
+        '@/wrappers/microApp',
       ],
     },
+    {
+      path: '/app1/user',
+      name: 'User',
+      microApp: 'App1',
+      wrappers: [
+        '@/wrappers/microApp',
+      ],
+    },
+    {
+      path: '/app1/list',
+      name: 'List',
+      microApp: 'App1',
+      wrappers: [
+        '@/wrappers/microApp',
+      ],
+    },
+  ],
+},
 ```
 
 ### 问题分析
@@ -49,54 +49,54 @@ https://github.com/umijs/umi/blob/v3.3.3/packages/renderer-react/src/renderRoute
 
 0 路由配置改为
 ```Javascript
+{
+  name: 'App1',
+  path: '/app1',
+  icon: 'smile',
+  routes: [
     {
-      name: 'App1',
-      path: '/app1',
-      icon: 'smile',
-      routes: [
-        {
-          path: '/app1/index',
-          name: 'index',
-          microApp: 'App1',
-          wrappers: [
-            '@/wrappers/microApp',
-          ],
-          microAppBase: '/app1'
-        },
-        {
-          path: '/app1/user',
-          name: 'User',
-          microApp: 'App1',
-          wrappers: [
-            '@/wrappers/microApp',
-          ],
-          microAppBase: '/app1'
-        },
-        {
-          path: '/app1/list',
-          name: 'List',
-          microApp: 'App1',
-          wrappers: [
-            '@/wrappers/microApp',
-          ],
-          microAppBase: '/app1'
-        },
+      path: '/app1/index',
+      name: 'index',
+      microApp: 'App1',
+      wrappers: [
+        '@/wrappers/microApp',
       ],
+      microAppBase: '/app1'
     },
+    {
+      path: '/app1/user',
+      name: 'User',
+      microApp: 'App1',
+      wrappers: [
+        '@/wrappers/microApp',
+      ],
+      microAppBase: '/app1'
+    },
+    {
+      path: '/app1/list',
+      name: 'List',
+      microApp: 'App1',
+      wrappers: [
+        '@/wrappers/microApp',
+      ],
+      microAppBase: '/app1'
+    },
+  ],
+},
 ```
 
 1 125行 添加 microAppBase
 ```Javascript
-  const routeProps = {
-    microAppBase: route.microAppBase || '', // 添加一行
-    ...
-  };
+const routeProps = {
+  microAppBase: route.microAppBase || '', // 添加一行
+  ...
+};
 ```
 https://github.com/umijs/umi/blob/v3.3.3/packages/renderer-react/src/renderRoutes/renderRoutes.tsx#L125
 
 2 第18 改为
 ```Javascript
-  const path = child.props.microAppBase || child.props.path || child.props.from;
+const path = child.props.microAppBase || child.props.path || child.props.from;
 ```
 https://github.com/umijs/umi/blob/v3.3.3/packages/renderer-react/src/renderRoutes/Switch.tsx#L18
 
