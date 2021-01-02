@@ -49,7 +49,7 @@
 /app1/index
 /app1/user
 ```
-三个路由，可共享同 props 为 match = { url: '/app1', ... } 的组件。
+三个路由，可共享同 props 为 match = { url: '/app1', ... } 的组件。在切换路由的时候，由于props不变，该组件不会被update或unmount。
 
 但如果只有
 ```javascript
