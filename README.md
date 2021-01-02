@@ -44,15 +44,19 @@
 问题的源头是 Switch 函数返回路由共享组件 props 中 match 对象值变了。
 
 例如：
+```javascript
 /app1/
 /app1/index
 /app1/user
+```
 三个路由，可共享同 props 为 match = { url: '/app1', ... } 的组件。
 
 但如果只有
+```javascript
 /app1/index
 /app1/user
-比如路由匹配到 /app1/index，props 为 match = { url: '/app1/index', ... }，另一个组件( url: '/app1/user')就会unmount，显然不是我们期望的结果。
+```
+比如路由匹配到 `/app1/index`，props 为 match = { url: '/app1/index', ... }，另一个组件( url: '/app1/user')就会 unmount，显然不是我们期望的结果。
 
 https://github.com/umijs/umi/blob/v3.3.3/packages/renderer-react/src/renderRoutes/Switch.tsx#L27
 
