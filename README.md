@@ -76,7 +76,7 @@ https://github.com/umijs/umi/blob/v3.3.3/packages/renderer-react/src/renderRoute
       wrappers: [
         '@/wrappers/microApp',
       ],
-      microAppBase: '/app1'
+      microAppBase: '/app1'  // 新增 microAppBase 指向子应用根路由，类似类型为string的activeRule的值 
     },
     {
       path: '/app1/user',
