@@ -56,7 +56,7 @@
 /app1/index
 /app1/user
 ```
-比如路由匹配到 `/app1/index`，props 为 match = { url: '/app1/index', ... }，另一个组件( url: '/app1/user')就会 unmount，显然不是我们期望的结果。
+比如路由匹配到 /app1/index，props 为 match = { url: '/app1/index', ... }的组件 mount，另一个组件( props 为 match = { url: '/app1/user', ... })就会 unmount，显然不是我们期望的结果。
 
 https://github.com/umijs/umi/blob/v3.3.3/packages/renderer-react/src/renderRoutes/Switch.tsx#L27
 
